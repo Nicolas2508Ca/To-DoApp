@@ -9,6 +9,9 @@ const ToDoFilters = () => {
                 <FilterButton action={() => { }} active="All" filter='Active' />
                 <FilterButton action={() => { }} active="All" filter='Completed' /> 
             </FilterButtonContainer>
+            <button className="text-gray-400 hover:text-white cursor-pointer transition-all duration-300 ease-in-out">
+                Clear Completed
+            </button>
         </FiltersContainer>
     )
 }   
