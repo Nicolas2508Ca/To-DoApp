@@ -40,12 +40,31 @@ function App() {
     setTodos(todoList);
   }
 
+  const handleSetComplete = (id) => {
+    const updateList = todos.map((todo) => {
+      if(todo.id === id) {
+        return{...todo, completed : !todo.completed}
+      }
+      return todo;
+    })
+    setTodos(updateList);
+  }
+
+  const handleDelete = (id) => {
+    const updateList = todos.filter(todo => todo.id !== id)
+    setTodos(updateList);
+  }
+
   return (
     <div className="bg-gray-900 min-h-screen h-full font-inter text-gray-100 flex items-center justify-center py-20 px-5">
       <div className="container flex flex-col max-w-xl">
         <Title />
         <TodoInput addTodo={addTodo} />
-        <ToDoList todos={todos} />
+        <ToDoList 
+        todos={todos} 
+        handleSetComplete={handleSetComplete}
+        handleDelete={handleDelete}
+        />
       </div>
     </div>
   );
