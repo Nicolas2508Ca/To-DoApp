@@ -1,6 +1,6 @@
 import { FiltersContainer, ItemLefts, FilterButtonContainer, FilterButton } from "./ToDoFilters.componentes"
 
-const ToDoFilters = () => {
+const ToDoFilters = ({total, activeFilter, showAllTodos, showActiveTodos}) => {
     return(
         <FiltersContainer>
             <ItemLefts/>

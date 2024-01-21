@@ -27,6 +27,9 @@ function App() {
     }
   ])
 
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [filteredTodos, setFilterdTodos] = useState(todos);
+   
   const addTodo = (title) => {
     const lastId = todos.length > 0 ? todos[todos.length - 1].id : 1;
     const newTodo = {
@@ -55,6 +58,23 @@ function App() {
     setTodos(updateList);
   }
 
+  const handleClearCompleted = () => {
+    const updateList = todos.filter(todo => !todo.completed)
+    setActiveFilter(updateList);
+  }
+
+  const showAllTodos = () => {
+    setActiveFilter("all");
+  }
+
+  const showActiveTodos = () => {
+    setActiveFilter("active");
+  }
+
+  const showCompletedTodos = () => {
+    setActiveFilter("completed");
+  }
+
   return (
     <div className="bg-gray-900 min-h-screen h-full font-inter text-gray-100 flex items-center justify-center py-20 px-5">
       <div className="container flex flex-col max-w-xl">
@@ -64,6 +84,10 @@ function App() {
         todos={todos} 
         handleSetComplete={handleSetComplete}
         handleDelete={handleDelete}
+        showAllTodos={showAllTodos}
+        showActiveTodos={showActiveTodos}
+        showCompletedTodos={showCompletedTodos}
+        handleClearCompleted={handleClearCompleted}
         />
       </div>
     </div>
