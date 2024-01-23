@@ -14,20 +14,32 @@ const ItemLefts = ({total = 0}) => {
     )
 }
 
-const FilterButtonContainer = ({ children }) => {
-    return(
+const FilterButtonContainer = ({
+    children
+}) => {
+    return (
         <div className="flex items-center space-x-2">
             {children}
         </div>
     )
-}
+};
 
 const FilterButton = ({ action, active, filter }) => {
+    const isActive = active && typeof active === 'string'; // Check if active is defined and is a string
+
     return (
-        <button onClick={action}
-            className={`hover:text-white cursor-pointer transition-all duration-300 ease-in-out `
-                + (active.toLowerCase().includes(filter.toLowerCase()) ? 'text-blue-400' : 'text-gray-400')}>{filter}</button>
-    )
-}
+        <button
+            onClick={action}
+            className={`hover:text-white cursor-pointer transition-all duration-300 ease-in-out ${
+                isActive && active.toLowerCase().includes(filter.toLowerCase())
+                    ? 'text-blue-400'
+                    : 'text-gray-400'
+            }`}
+        >
+            {filter}
+        </button>
+    );
+};
+
 
 export { FiltersContainer, ItemLefts, FilterButtonContainer, FilterButton }
