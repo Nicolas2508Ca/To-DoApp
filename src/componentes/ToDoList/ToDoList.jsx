@@ -1,7 +1,15 @@
 import { ToDoFilters } from "../ToDoFilters"
 import { ToDo } from "../ToDo"
 
-const ToDoList = ({ todos, handleSetComplete, handleDelete, activeFilter, showActiveTodos, showAllTodos, showCompletedTodos, handleClearCompleted }) => {
+const ToDoList = ({ 
+    todos, 
+    handleSetComplete, 
+    handleDelete, 
+    activeFilter, 
+    showActiveTodos, 
+    showAllTodos, 
+    showCompleteTodos, 
+    handleClearComplete }) => {
     return (
         <div className="flex flex-col mt-7 rounded-lg overflow-hidden shadow-2xl">
             {todos.map(todo => {
@@ -20,8 +28,8 @@ const ToDoList = ({ todos, handleSetComplete, handleDelete, activeFilter, showAc
                 total={todos.length}
                 showAllTodos={showAllTodos}
                 showActiveTodos={showActiveTodos}
-                showCompletedTodos={showCompletedTodos}
-                handleClearCompleted={handleClearCompleted}
+                showCompleteTodos={showCompleteTodos}
+                handleClearComplete={handleClearComplete}
             />
         </div>
     )

@@ -1,7 +1,7 @@
 import { Title } from "./componentes/Title";
 import { TodoInput } from "./componentes/ToDoInput";
 import { ToDoList } from "./componentes/ToDoList";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -58,7 +58,7 @@ function App() {
     setTodos(updateList);
   }
 
-  const handleClearCompleted = () => {
+  const handleClearComplete = () => {
     const updateList = todos.filter(todo => !todo.completed)
     setActiveFilter(updateList);
   }
@@ -75,19 +75,32 @@ function App() {
     setActiveFilter("completed");
   }
 
+  useEffect(() => {
+    if(activeFilter === "all") {
+      setFilterdTodos(todos);
+    }else if(activeFilter === "active") {
+      const activeTodos = todos.filter(todo => todo.completed === false)
+      setFilterdTodos(activeTodos);
+    }else if(activeFilter === "completed") {
+      const completedTodos = todos.filter(todo => todo.completed === true)
+      setFilterdTodos(completedTodos);
+    }
+  },[activeFilter, todos])
+
   return (
     <div className="bg-gray-900 min-h-screen h-full font-inter text-gray-100 flex items-center justify-center py-20 px-5">
       <div className="container flex flex-col max-w-xl">
         <Title />
         <TodoInput addTodo={addTodo} />
         <ToDoList 
-        todos={todos} 
+        todos={filteredTodos} 
+        activeFilter={activeFilter}
         handleSetComplete={handleSetComplete}
         handleDelete={handleDelete}
         showAllTodos={showAllTodos}
         showActiveTodos={showActiveTodos}
         showCompletedTodos={showCompletedTodos}
-        handleClearCompleted={handleClearCompleted}
+        handleClearComplete={handleClearComplete}
         />
       </div>
     </div>
