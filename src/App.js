@@ -94,7 +94,6 @@ function App() {
         <TodoInput addTodo={addTodo} />
         <ToDoList 
         todos={filteredTodos} 
-        activeFilter={activeFilter}
         handleSetComplete={handleSetComplete}
         handleDelete={handleDelete}
         showAllTodos={showAllTodos}

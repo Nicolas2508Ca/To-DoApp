@@ -8,7 +8,7 @@ const ToDoList = ({
     activeFilter, 
     showActiveTodos, 
     showAllTodos, 
-    showCompleteTodos, 
+    showCompletedTodos, 
     handleClearComplete }) => {
     return (
         <div className="flex flex-col mt-7 rounded-lg overflow-hidden shadow-2xl">
@@ -28,7 +28,7 @@ const ToDoList = ({
                 total={todos.length}
                 showAllTodos={showAllTodos}
                 showActiveTodos={showActiveTodos}
-                showCompleteTodos={showCompleteTodos}
+                showCompletedTodos={showCompletedTodos}
                 handleClearComplete={handleClearComplete}
             />
         </div>
