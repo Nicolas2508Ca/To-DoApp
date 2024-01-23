@@ -76,12 +76,12 @@ function App() {
   }
 
   useEffect(() => {
-    if(activeFilter === "all") {
+    if(activeFilter === 'all') {
       setFilterdTodos(todos);
-    }else if(activeFilter === "active") {
+    }else if(activeFilter === 'active') {
       const activeTodos = todos.filter(todo => todo.completed === false)
       setFilterdTodos(activeTodos);
-    }else if(activeFilter === "completed") {
+    }else if(activeFilter === 'completed') {
       const completedTodos = todos.filter(todo => todo.completed === true)
       setFilterdTodos(completedTodos);
     }
