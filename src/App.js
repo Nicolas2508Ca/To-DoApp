@@ -27,7 +27,7 @@ function App() {
     }
   ])
 
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState('all');
   const [filteredTodos, setFilterdTodos] = useState(todos);
    
   const addTodo = (title) => {
@@ -64,15 +64,15 @@ function App() {
   }
 
   const showAllTodos = () => {
-    setActiveFilter("all");
+    setActiveFilter('all');
   }
 
   const showActiveTodos = () => {
-    setActiveFilter("active");
+    setActiveFilter('active');
   }
 
   const showCompletedTodos = () => {
-    setActiveFilter("completed");
+    setActiveFilter('completed');
   }
 
   useEffect(() => {
