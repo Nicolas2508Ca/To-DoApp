@@ -1,6 +1,7 @@
 const ToDo = ({ todo, handleSetComplete, handleDelete }) => {
 
-    const { id, title, completed } = todo
+    const { id, title, completed } = todo;
+
     return(
         <div className="flex items-center justify-between p-4 bg bg-gray-700 border-b  border-solid border-gray-600">
             <div className="flex items-center">
