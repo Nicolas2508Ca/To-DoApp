@@ -39,7 +39,7 @@ function App() {
 
   const handleClearComplete = () => {
     const updateList = todos.filter(todo => !todo.completed)
-    setActiveFilter(updateList);
+    setTodos(updateList);
   }
 
   const showAllTodos = () => {
