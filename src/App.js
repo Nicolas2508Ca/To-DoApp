@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 function App() {
   const [todos, setTodos] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const todosPerPage = 5;
+
   const [activeFilter, setActiveFilter] = useState('all');
   const [filteredTodos, setFilterdTodos] = useState(todos);
    
@@ -77,21 +80,52 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todos))
   }, [todos])
 
+  const indexOfLastTodo = currentPage * todosPerPage;
+  const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+  const currentTodos = filteredTodos.slice(indexOfFirstTodo, indexOfLastTodo);
+
+  let activeTodos;
+  switch (activeFilter) {
+    case 'all':
+      activeTodos = todos.length;
+      break;
+    case 'active':
+      activeTodos = todos.filter(todo => !todo.completed).length;
+      break;
+    case 'completed':
+      activeTodos = todos.filter(todo => todo.completed).length;
+      break;
+    default:
+      activeTodos = todos.length;
+  }
   return (
-    <div className="bg-gray-900 min-h-screen h-full font-inter text-gray-100 flex items-center justify-center py-20 px-5">
+    <div className="overflow-y-hidden bg-gray-900 min-h-screen h-1 font-inter text-gray-100 flex items-center justify-center py-20 px-5">
       <div className="container flex flex-col max-w-xl">
         <Title />
         <TodoInput 
         addTodo={addTodo} />
         <ToDoList 
-        todos={filteredTodos} 
+        todos={currentTodos} 
         handleSetComplete={handleSetComplete}
         handleDelete={handleDelete}
         showAllTodos={showAllTodos}
         showActiveTodos={showActiveTodos}
         showCompletedTodos={showCompletedTodos}
         handleClearComplete={handleClearComplete}
+        activeTodos={activeTodos}
         />
+        <div className="flex items-center justify-center mt-8">
+          <img src="/arrow-left.svg" alt="" className="pr-1 cursor-pointer rounded-2xl h-8 w-8 bg-gray-500 mr-8" onClick={() => {
+            if (currentPage > 1) {
+              setCurrentPage(currentPage - 1)
+            }
+          }}></img>
+          <img src="/arrow-right.svg" alt="" className="pl-1 cursor-pointer rounded-2xl h-8 w-8 bg-gray-500" onClick={() => {
+            if ((currentPage * todosPerPage) < filteredTodos.length) {
+              setCurrentPage(currentPage + 1)
+            }
+          }}></img>
+        </div>
       </div>
     </div>
   );

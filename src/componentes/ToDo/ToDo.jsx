@@ -7,9 +7,7 @@ const ToDo = ({ todo, handleSetComplete, handleDelete }) => {
             <div className="flex items-center">
                 {
                     completed ? (
-                        <div onClick={() => handleSetComplete(id)} className="bg-green-700 p-1 rounded-full cursor-pointer">
-                            <img className="h-4 w-4" src="/check-icon.svg" alt="check Icon"></img>
-                        </div>
+                        <span onClick={() => handleSetComplete(id)} className="border-solid border border-green-700 bg-green-700 p-3 rounded-full cursor-pointer"></span>
                     ) : (
                         <span onClick={() => handleSetComplete(id)}  className="border-solid border border-gray-500 rounded-full p-3 cursor-pointer"></span>
                     )

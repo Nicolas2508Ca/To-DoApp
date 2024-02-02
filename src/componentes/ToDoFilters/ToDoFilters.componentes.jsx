@@ -6,10 +6,10 @@ const FiltersContainer = ({ children }) => {
     )
 }
 
-const ItemLefts = ({total = 0}) => {
+const ItemLefts = ({activeTodos}) => {
     return(
         <p className="text-gray-400 text-sm">
-            {total} items left
+            {activeTodos} items left
         </p> 
     )
 }
