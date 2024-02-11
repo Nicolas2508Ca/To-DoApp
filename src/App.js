@@ -7,10 +7,12 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const todosPerPage = 5;
+  const todosPerPage = 4;
 
   const [activeFilter, setActiveFilter] = useState('all');
   const [filteredTodos, setFilterdTodos] = useState(todos);
+
+  const [descriptions, setDescriptions] = useState(JSON.parse(localStorage.getItem('descriptions')) || {});
    
   const addTodo = (title) => {
     const lastId = todos.length > 0 ? todos[todos.length - 1].id : 1;
@@ -38,13 +40,26 @@ function App() {
   const handleDelete = (id) => {
     const updateList = todos.filter(todo => todo.id !== id)
     setTodos(updateList);
+
+    const newDescriptions = { ...descriptions };
+    delete newDescriptions[id];
+    setDescriptions(newDescriptions);
+    localStorage.setItem('descriptions', JSON.stringify(newDescriptions));
   }
 
   const handleClearComplete = () => {
-    const updateList = todos.filter(todo => !todo.completed)
+    const updateList = todos.filter(todo => !todo.completed);
+    const newDescriptions = { ...descriptions };
+    todos.forEach(todo => {
+        if (todo.completed) {
+            delete newDescriptions[todo.id];
+        }
+    });
     setTodos(updateList);
+    setDescriptions(newDescriptions);
+    localStorage.setItem('descriptions', JSON.stringify(newDescriptions));
   }
-
+  
   const showAllTodos = () => {
     setActiveFilter('all');
   }
@@ -113,6 +128,8 @@ function App() {
         showCompletedTodos={showCompletedTodos}
         handleClearComplete={handleClearComplete}
         activeTodos={activeTodos}
+        descriptions={descriptions}
+        setDescriptions={setDescriptions}
         />
         <div className="flex items-center justify-center mt-8">
           <img src="/arrow-left.svg" alt="" className="pr-1 cursor-pointer rounded-2xl h-8 w-8 bg-gray-500 mr-8" onClick={() => {
