@@ -40,7 +40,8 @@ const ToDo = ({ todo, handleSetComplete, handleDelete, openDescriptionId, setOpe
                 value={description} 
                 className="w-full pb-3 border-b-2 focus:border-white focus:outline-none bg-gray-700" 
                 type="text" 
-                placeholder="Enter description" />
+                placeholder="Enter description"
+                maxLength={60} />
             </div>
         )}
         </>

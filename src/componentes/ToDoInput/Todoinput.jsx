@@ -19,6 +19,7 @@ const TodoInput = ({ addTodo }) => {
                 value={title}
                 onChange={e => setTitle(e.target.value)}
                 onKeyDown={e => handleTodo(e)}
+                maxLength={40}
             />
         </div>   
     )
